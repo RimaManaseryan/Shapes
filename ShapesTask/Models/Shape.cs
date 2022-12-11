@@ -1,4 +1,6 @@
-﻿namespace ShapesTask.Models
+﻿using ShapesTask.Helper;
+
+namespace ShapesTask.Models
 {
     public abstract class Shape
     {
@@ -17,7 +19,44 @@
             get { return y; }
             set { if (value > 0) y = value; }
         }
-        public abstract void Draw(char? symbol = null);
-        public abstract void Move();
+        protected abstract void Draw(char? symbol = null);
+        protected virtual void Move()
+        {
+            while (Console.ReadKey(true) is ConsoleKeyInfo keyInfo &&
+            keyInfo.Key is ConsoleKey key && key != ConsoleKey.Escape)
+            {
+                if (key.IsRight())
+                {
+                    Draw(' ');
+                    if (X < Console.WindowWidth - 11)
+                        X++;
+                    Draw();
+                }
+                else if (key.IsLeft() && X > Height)
+                {
+                        Draw(' ');
+                        X--;
+                        Draw();
+                }
+                else if (key.IsUp())
+                {
+                    Draw(' ');
+                    Y--;
+                    Draw();
+                }
+                else if (key.IsDown())
+                {
+                    Draw(' ');
+                    Y++;
+                    Draw();
+                }
+            }
+        }
+
+        public virtual void DrawAndMove()
+        {
+            Draw();
+            Move();
+        }
     }
 }

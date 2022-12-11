@@ -18,8 +18,8 @@ char symbol = char.Parse(Console.ReadLine()?.Trim() ?? "*");
 Shape? shape =
 shaperesp == 1 ? new Rectangle(4, 10, symbol, color, Console.WindowWidth / 2, Console.WindowHeight / 2) :
 shaperesp == 2 ? new Triangle(6, symbol, color, Console.WindowWidth / 2, Console.WindowHeight / 2) : null;
-shape?.Draw();
-shape?.Move();
+shape?.DrawAndMove();
+shape?.DrawAndMove();
 
 
 Console.ReadLine();

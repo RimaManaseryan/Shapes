@@ -14,7 +14,7 @@ namespace ShapesTask.Models
             X = x;
             Y = y;
         }
-        public override void Draw(char? symbol = null)
+        protected override void Draw(char? symbol = null)
         {
             symbol ??= Symbol;
             Console.ForegroundColor = Color;
@@ -27,37 +27,6 @@ namespace ShapesTask.Models
                 }
             }
         }
-        public override void Move()
-        {
-            while (Console.ReadKey(true) is ConsoleKeyInfo keyInfo &&
-            keyInfo.Key is ConsoleKey key && key != ConsoleKey.Escape)
-            {
-                if (key.IsRight())
-                {
-                    Draw(' ');
-                    if (X < Console.WindowWidth - 11)
-                        X++;
-                    Draw();
-                }
-                else if (key.IsLeft())
-                {
-                    Draw(' ');
-                    X--;
-                    Draw();
-                }
-                else if (key.IsUp())
-                {
-                    Draw(' ');
-                    Y--;
-                    Draw();
-                }
-                else if (key.IsDown())
-                {
-                    Draw(' ');
-                    Y++;
-                    Draw();
-                }
-            }
-        }
+        
     }
 }
